@@ -18,7 +18,7 @@ public class ProductService implements iProductService {
 
     @Override
     public List<Product> getAProducts() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return productRepo.findAll();
     }
 
     @Override
@@ -33,22 +33,22 @@ public class ProductService implements iProductService {
 
     @Override
     public void deleteProductById(Long id, Product product) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        productRepo.findById(id).ifPresentOrElse((productRepo::delete), () -> new ProductNotFoundException("Product not found with id: " + id));
     }
 
     @Override
     public List<Product> getProductByCategory(String brand, String category) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return productRepo.findByCategoryName(category);
     }
 
     @Override
     public List<Product> getProductByBrand(String brand) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return productRepo.findByBrandName(brand);
     }
 
     @Override
     public List<Product> getProductByCategoryAndBrand(String categoroy, String brand) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return productRepo.findByProductByCategoryAndBrand(categoroy, brand);
     }
 
     @Override
