@@ -3,10 +3,11 @@ package com.cartOfLife.playBoyCarty.services.products;
 import java.util.List;
 
 import com.cartOfLife.playBoyCarty.model.Product;
+import com.cartOfLife.playBoyCarty.model.ProductModel.AddProductModel;
 
-public interface iProductService {
+public interface IProductService {
 
-    Product addProduct(Product product);
+    Product addProduct(AddProductModel product);
 
     List<Product> getAProducts();
 

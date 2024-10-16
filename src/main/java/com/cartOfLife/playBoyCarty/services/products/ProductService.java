@@ -2,18 +2,40 @@ package com.cartOfLife.playBoyCarty.services.products;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cartOfLife.playBoyCarty.exception.ProductNotFoundException;
+import com.cartOfLife.playBoyCarty.model.Category;
 import com.cartOfLife.playBoyCarty.model.Product;
+import com.cartOfLife.playBoyCarty.model.ProductModel.AddProductModel;
 import com.cartOfLife.playBoyCarty.repository.productRepository.ProductRepository;
 
-public class ProductService implements iProductService {
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
+public class ProductService implements IProductService {
+
+    @Autowired
     private ProductRepository productRepo;
 
     @Override
 
-    public Product addProduct(Product product) {
-        return productRepo.save(product);
+    public Product addProduct(AddProductModel product) {
+
+        return productRepo.addProduct(product);
+    }
+
+    private Product createProduct(AddProductModel request, Category category) {
+        return new Product(
+                request.getBrand(),
+                category,
+                request.getDescription(),
+                request.getInventory(),
+                request.getName(),
+                request.getPrice()
+        );
     }
 
     @Override
@@ -47,23 +69,23 @@ public class ProductService implements iProductService {
     }
 
     @Override
-    public List<Product> getProductByCategoryAndBrand(String categoroy, String brand) {
-        return productRepo.findByProductByCategoryAndBrand(categoroy, brand);
+    public List<Product> getProductByCategoryAndBrand(String category, String brand) {
+        return productRepo.findByProductByCategoryAndBrand(category, brand);
     }
 
     @Override
     public List<Product> getProductByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return productRepo.findProductByName(name);
     }
 
     @Override
-    public List<Product> getProductByBrandAndName(String categoroy, String brand) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Product> getProductByBrandAndName(String category, String brand) {
+        return productRepo.getProductByBrandAndName(category, brand);
     }
 
     @Override
     public Long countProductsByBranndAndName(String brand, String name) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return productRepo.countProductByBrandAndName(brand, name);
     }
 
 }
