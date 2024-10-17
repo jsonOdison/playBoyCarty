@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.cartOfLife.playBoyCarty.exception.ProductNotFoundException;
 import com.cartOfLife.playBoyCarty.model.Category;
-import com.cartOfLife.playBoyCarty.model.Product;
 import com.cartOfLife.playBoyCarty.model.DTO.AddProductModel;
+import com.cartOfLife.playBoyCarty.model.DTO.UpdateProductModel;
+import com.cartOfLife.playBoyCarty.model.Product;
 import com.cartOfLife.playBoyCarty.repository.categoryRepository.CategoryRepository;
 import com.cartOfLife.playBoyCarty.repository.productRepository.ProductRepository;
 
@@ -64,8 +65,25 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void updateProductById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Product updateProductById(UpdateProductModel updateProduct, Long id) {
+        return productRepo.findById(id).map((product) -> {
+            updateExistingProduct(product, updateProduct);
+            return product; // Return the updated product
+        }).map(productRepo::save).orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
+    }
+
+    //helper method for update 
+    private Product updateExistingProduct(Product existingProd, UpdateProductModel updateRequest) {
+        existingProd.setName(updateRequest.getName());
+        existingProd.setBrand(updateRequest.getBrand());
+        existingProd.setPrice(updateRequest.getPrice());
+        existingProd.setInventory(updateRequest.getInventory());
+        existingProd.setDescription(updateRequest.getDescription());
+        existingProd.setName(updateRequest.getName());
+        Category category = categoryRepository.findByName(updateRequest.getCategory().getName());
+        existingProd.setName(category.getName());
+        existingProd.setCategory(category);
+        return existingProd;
     }
 
     @Override

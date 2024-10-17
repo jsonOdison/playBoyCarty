@@ -3,6 +3,7 @@ package com.cartOfLife.playBoyCarty.services.products;
 import java.util.List;
 
 import com.cartOfLife.playBoyCarty.model.DTO.AddProductModel;
+import com.cartOfLife.playBoyCarty.model.DTO.UpdateProductModel;
 import com.cartOfLife.playBoyCarty.model.Product;
 
 public interface IProductService {
@@ -13,7 +14,7 @@ public interface IProductService {
 
     Product getProductById(Long id);
 
-    void updateProductById(Long id);
+    Product updateProductById(UpdateProductModel updateProduct, Long id);
 
     void deleteProductById(Long id, Product product);
 
