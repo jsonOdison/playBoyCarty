@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+// @AllArgsConstructor
 @Entity
 public class Product {
 
@@ -37,4 +36,13 @@ public class Product {
     private Category category;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true) // all images associated with that prodict will be deleted
     private List<Image> images;
+
+    public Product(String brand, Category category, String description, int inventory, String name, BigDecimal price) {
+        this.brand = brand;
+        this.category = category;
+        this.description = description;
+        this.inventory = inventory;
+        this.name = name;
+        this.price = price;
+    }
 }
