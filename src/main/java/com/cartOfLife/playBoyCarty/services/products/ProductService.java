@@ -1,6 +1,7 @@
 package com.cartOfLife.playBoyCarty.services.products;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Service;
 import com.cartOfLife.playBoyCarty.exception.ProductNotFoundException;
 import com.cartOfLife.playBoyCarty.model.Category;
 import com.cartOfLife.playBoyCarty.model.Product;
-import com.cartOfLife.playBoyCarty.model.ProductModel.AddProductModel;
+import com.cartOfLife.playBoyCarty.model.DTO.AddProductModel;
+import com.cartOfLife.playBoyCarty.repository.categoryRepository.CategoryRepository;
 import com.cartOfLife.playBoyCarty.repository.productRepository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,11 +22,24 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepo;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
 
-    public Product addProduct(AddProductModel product) {
+    public Product addProduct(AddProductModel requestProduct) {
+        // Get the category, creating it if not found
+        Category category = findOrCreateCategory(requestProduct.getCategory().getName());
 
-        return productRepo.addProduct(product);
+        // Create the product with the retrieved/created category and save it
+        Product product = createProduct(requestProduct, category);
+
+        return productRepo.save(product);
+    }
+
+    private Category findOrCreateCategory(String categoryName) {
+        return Optional.ofNullable(categoryRepository.findByName(categoryName))
+                .orElseGet(() -> new Category());
     }
 
     private Product createProduct(AddProductModel request, Category category) {

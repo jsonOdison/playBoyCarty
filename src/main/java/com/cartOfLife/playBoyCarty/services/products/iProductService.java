@@ -2,8 +2,8 @@ package com.cartOfLife.playBoyCarty.services.products;
 
 import java.util.List;
 
+import com.cartOfLife.playBoyCarty.model.DTO.AddProductModel;
 import com.cartOfLife.playBoyCarty.model.Product;
-import com.cartOfLife.playBoyCarty.model.ProductModel.AddProductModel;
 
 public interface IProductService {
 

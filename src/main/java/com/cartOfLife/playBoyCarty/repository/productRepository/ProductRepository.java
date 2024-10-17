@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.cartOfLife.playBoyCarty.model.DTO.AddProductModel;
 import com.cartOfLife.playBoyCarty.model.Product;
-import com.cartOfLife.playBoyCarty.model.ProductModel.AddProductModel;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
