@@ -6,7 +6,7 @@ import com.cartOfLife.playBoyCarty.model.DTO.AddProductModel;
 import com.cartOfLife.playBoyCarty.model.DTO.UpdateProductModel;
 import com.cartOfLife.playBoyCarty.model.Product;
 
-public interface IProductService {
+interface IProductService {
 
     Product addProduct(AddProductModel product);
 
