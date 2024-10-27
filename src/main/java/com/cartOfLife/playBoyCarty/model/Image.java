@@ -25,7 +25,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String fileName;
-    private String filtType;
+    private String fileType;
     @Lob
     private Blob image;
     private String downloadUrl;

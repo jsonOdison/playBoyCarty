@@ -69,7 +69,7 @@ public class ImageService implements IImageService {
     private Image buildImageEntity(MultipartFile file, Product product) throws IOException, SQLException {
         Image image = new Image();
         image.setFileName(file.getOriginalFilename());
-        image.setFiltType(file.getContentType());
+        image.setFileType(file.getContentType());
         image.setImage(new SerialBlob(file.getBytes()));
         image.setProduct(product);
         return image;
