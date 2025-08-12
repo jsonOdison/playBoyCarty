@@ -3,6 +3,7 @@ package com.cartOfLife.playBoyCarty.controllers;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("${api.prefix}/images")
 public class ImageController {
 
+    @Autowired
     private final IImageService imageService;
 
     @PostMapping("/upload")

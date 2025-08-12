@@ -1,20 +1,19 @@
-package com.cartOfLife.playBoyCarty.services.category;
+// package com.cartOfLife.playBoyCarty.services.category;
 
-import java.util.List;
+// import java.util.List;
 
-import com.cartOfLife.playBoyCarty.model.Category;
+// import com.cartOfLife.playBoyCarty.model.Category;
 
-public interface ICategoryService {
+// public interface ICategoryService {
 
-    Category getCategoryById(Long id);
+//     Category getCategoryById(Long id);
 
-    Category getCategoryByName(String name);
+//     // Category getCategoryByName(String name);
+//     List<Category> getAllCategories();
 
-    List<Category> getAllCategories();
+//     Category addCategor(Category category);
 
-    Category addCategor(Category category);
+//     Category updateCategory(Category category, Long id);
 
-    Category updateCategory(Category category, Long id);
-
-    void deleteCategoryById(Long id);
-}
+//     void deleteCategoryById(Long id);
+// }
