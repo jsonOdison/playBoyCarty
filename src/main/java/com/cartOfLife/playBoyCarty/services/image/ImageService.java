@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 
 public class ImageService implements IImageService {
 
-    @Autowired
     private ImageRepository imageRepository;
     private ProductService productService;
 
@@ -69,9 +67,9 @@ public class ImageService implements IImageService {
     private Image buildImageEntity(MultipartFile file, Product product) throws IOException, SQLException {
         Image image = new Image();
         image.setFileName(file.getOriginalFilename());
-        image.setFiltType(file.getContentType());
+        image.setFileType(file.getContentType());
         image.setImage(new SerialBlob(file.getBytes()));
-        image.setProduct(product);
+        // image.setProduct(product);
         return image;
     }
 
